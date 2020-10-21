@@ -15,19 +15,19 @@ import com.capgemini.training.iohelper.ICSVBuilder;
 public class IPLAnalyzer {
 	private String csvPath;
 
-	private static <T> List<T> sortBy(String filepath, Comparator<T> comparator, Class<T> clazz)
+	private static <T> List<T> sortBy(final String filepath, final Comparator<T> comparator, final Class<T> clazz)
 			throws IPLAnalyzerException {
 
 		try (Reader reader = Files.newBufferedReader(Paths.get(filepath));) {
-			ICSVBuilder<T> csvBuilder = CSVBuilderFactory.createCSVBuilder();
-			List<T> list = csvBuilder.getLst(reader, clazz);
-			List<T> sortedList = list.stream().sorted(comparator).distinct().collect(Collectors.toList());
+			final ICSVBuilder<T> csvBuilder = CSVBuilderFactory.createCSVBuilder();
+			final List<T> list = csvBuilder.getLst(reader, clazz);
+			final List<T> sortedList = list.stream().sorted(comparator).distinct().collect(Collectors.toList());
 
 			return sortedList;
 
-		} catch (IOException ioe) {
+		} catch (final IOException ioe) {
 			throw new IPLAnalyzerException(ioe.getMessage());
-		} catch (CSVBuilderException e) {
+		} catch (final CSVBuilderException e) {
 			throw new IPLAnalyzerException(e.getMessage());
 		}
 	}
@@ -38,14 +38,13 @@ public class IPLAnalyzer {
 			sortedByAverage = sortBy(csvPath, Comparator.comparing(IPLPlayer::getAverage).reversed(), IPLPlayer.class)
 					.stream().limit(5).collect(Collectors.toList());
 
-		} catch (IPLAnalyzerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (final IPLAnalyzerException e) {
+			e.getMessage();
 		}
 		return sortedByAverage.toArray(new IPLPlayer[0]);
 	}
 
-	public void loadBattingData(String filepath) {
+	public void loadBattingData(final String filepath) {
 		this.csvPath = filepath;
 	}
 
