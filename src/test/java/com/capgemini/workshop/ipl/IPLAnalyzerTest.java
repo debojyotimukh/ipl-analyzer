@@ -1,17 +1,30 @@
 package com.capgemini.workshop.ipl;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class IPLAnalyzerTest {
     private static final String IPL_BATTING_DATA = "src/test/java/com/capgemini/workshop/ipl/resources/IPL2019FactsheetMostRuns.csv";
 
+    public IPLAnalyzer iplAnalyzer;
+
+    @Before
+    public void init() {
+        iplAnalyzer = new IPLAnalyzer();
+        iplAnalyzer.loadBattingData(IPL_BATTING_DATA);
+    }
+
     @Test
     public void topBattingAverageInIPL() {
-        IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
-        iplAnalyzer.loadBattingData(IPL_BATTING_DATA);
         IPLPlayer[] iplPlayers = iplAnalyzer.getTopBattingAverage(5);
         Assert.assertEquals(iplPlayers[0].getName(), "MS Dhoni");
+    }
+
+    @Test
+    public void batsmanWithTopStrikeRate() {
+        IPLPlayer[] iplPlayers = iplAnalyzer.getTopStrikingRates(5);
+        Assert.assertEquals(iplPlayers[0].getName(), "Ishant Sharma");
     }
 
 }
