@@ -27,4 +27,16 @@ public class IPLAnalyzerTest {
         Assert.assertEquals(iplPlayers[0].getName(), "Ishant Sharma");
     }
 
+    @Test
+    public void batsmanWithHighestFours() {
+        IPLPlayer[] iplPlayers = iplAnalyzer.getHighestFours(5);
+        Assert.assertEquals(iplPlayers[0].getName(), "Shikhar Dhawan");
+    }
+
+    @Test
+    public void bastsmanWithHighestSixes() {
+        IPLPlayer[] iplPlayers = iplAnalyzer.getHighestSixes(5);
+        Assert.assertEquals(iplPlayers[0].getName(), "Andre Russell");
+    }
+
 }
