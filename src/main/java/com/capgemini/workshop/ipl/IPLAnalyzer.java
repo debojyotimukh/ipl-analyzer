@@ -30,4 +30,12 @@ public class IPLAnalyzer {
 		}
 	}
 
+	public IPLPlayer[] getTopStrikingRates(int limit) {
+		
+		final List<IPLPlayer> sortedByStrikeRate = sortBy(batsman.getPlayerList(),
+				Comparator.comparing(IPLPlayer::getStrikingRate).reversed(), limit);
+
+		return sortedByStrikeRate.toArray(new IPLPlayer[0]);
+	}
+
 }
