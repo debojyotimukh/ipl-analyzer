@@ -52,4 +52,13 @@ public class IPLAnalyzer {
 		return sortedBySixes.toArray(new IPLPlayer[0]);
 	}
 
+	public IPLPlayer[] getHighestStrikeRateWithFoursAndSixes(int limit) {
+		Comparator<IPLPlayer> comparator = Comparator.comparing(IPLPlayer::getStrikingRate)
+				.thenComparing(IPLPlayer::getNoOfSixes).thenComparing(IPLPlayer::getNoOfFours).reversed();
+
+		final List<IPLPlayer> sortedBySixes = sortBy(batsman.getPlayerList(), comparator, limit);
+
+		return sortedBySixes.toArray(new IPLPlayer[0]);
+	}
+
 }
