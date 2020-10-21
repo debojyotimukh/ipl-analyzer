@@ -10,7 +10,7 @@ public class IPLAnalyzerTest {
     public void topBattingAverageInIPL() {
         IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
         iplAnalyzer.loadBattingData(IPL_BATTING_DATA);
-        IPLPlayer[] iplPlayers = iplAnalyzer.getTopFiveBattingAverage();
+        IPLPlayer[] iplPlayers = iplAnalyzer.getTopBattingAverage(5);
         Assert.assertEquals(iplPlayers[0].getName(), "MS Dhoni");
     }
 
