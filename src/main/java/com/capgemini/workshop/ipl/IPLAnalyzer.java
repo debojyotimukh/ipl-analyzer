@@ -31,11 +31,25 @@ public class IPLAnalyzer {
 	}
 
 	public IPLPlayer[] getTopStrikingRates(int limit) {
-		
+
 		final List<IPLPlayer> sortedByStrikeRate = sortBy(batsman.getPlayerList(),
 				Comparator.comparing(IPLPlayer::getStrikingRate).reversed(), limit);
 
 		return sortedByStrikeRate.toArray(new IPLPlayer[0]);
+	}
+
+	public IPLPlayer[] getHighestFours(int limit) {
+		final List<IPLPlayer> sortedByFours = sortBy(batsman.getPlayerList(),
+				Comparator.comparing(IPLPlayer::getNoOfFours).reversed(), limit);
+
+		return sortedByFours.toArray(new IPLPlayer[0]);
+	}
+
+	public IPLPlayer[] getHighestSixes(int limit) {
+		final List<IPLPlayer> sortedBySixes = sortBy(batsman.getPlayerList(),
+				Comparator.comparing(IPLPlayer::getNoOfSixes).reversed(), limit);
+
+		return sortedBySixes.toArray(new IPLPlayer[0]);
 	}
 
 }
