@@ -6,13 +6,15 @@ import org.junit.Test;
 
 public class IPLAnalyzerTest {
     private static final String IPL_BATTING_DATA = "src/test/java/com/capgemini/workshop/ipl/resources/IPL2019FactsheetMostRuns.csv";
+    private static final String IPL_BOWLING_DATA = "src/test/java/com/capgemini/workshop/ipl/resources/IPL2019FactsheetMostWkts.csv";
 
     public IPLAnalyzer iplAnalyzer;
 
     @Before
-    public void init() {
+    public void init() throws IPLAnalyzerException {
         iplAnalyzer = new IPLAnalyzer();
         iplAnalyzer.loadBattingData(IPL_BATTING_DATA);
+        iplAnalyzer.loadBowlingData(IPL_BOWLING_DATA);
     }
 
     @Test
@@ -40,13 +42,13 @@ public class IPLAnalyzerTest {
     }
 
     @Test
-    public void batsmanWithHighestStrikeRateWithFoursAndSixes(){
+    public void batsmanWithHighestStrikeRateWithFoursAndSixes() {
         IPLBatsman[] iplPlayers = iplAnalyzer.getHighestStrikeRateWithFoursAndSixes(5);
         Assert.assertEquals(iplPlayers[0].getName(), "Andre Russell");
     }
 
     @Test
-    public void batsmanWithBestAverageWithBestStrikingRate(){
+    public void batsmanWithBestAverageWithBestStrikingRate() {
         IPLBatsman[] iplPlayers = iplAnalyzer.getBestAverageWithBestStrikeRate(5);
         Assert.assertEquals(iplPlayers[0].getName(), "MS Dhoni");
     }
@@ -54,7 +56,13 @@ public class IPLAnalyzerTest {
     @Test
     public void batsmanWithMaximumRunsWithBestAverage() {
         IPLBatsman[] iplPlayers = iplAnalyzer.getMaximumRunWithBestAvg(5);
-        Assert.assertEquals(iplPlayers[0].getName(), "David Warner");        
+        Assert.assertEquals(iplPlayers[0].getName(), "David Warner");
+    }
+
+    @Test
+    public void bowlerWithTopStrikingRates() {
+        IPLBowler[] iplBowlers = iplAnalyzer.getTopBowlingStrikingRate(5);
+        Assert.assertEquals(iplBowlers[0].getName(), "Krishnappa Gowtham");
     }
 
 }
