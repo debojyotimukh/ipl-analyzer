@@ -30,7 +30,7 @@ public class IPLAnalyzer {
 		}
 	}
 
-	public IPLPlayer[] getTopStrikingRates(int limit) {
+	public IPLPlayer[] getTopStrikingRates(final int limit) {
 
 		final List<IPLPlayer> sortedByStrikeRate = sortBy(batsman.getPlayerList(),
 				Comparator.comparing(IPLPlayer::getStrikingRate).reversed(), limit);
@@ -38,16 +38,25 @@ public class IPLAnalyzer {
 		return sortedByStrikeRate.toArray(new IPLPlayer[0]);
 	}
 
-	public IPLPlayer[] getHighestFours(int limit) {
+	public IPLPlayer[] getHighestFours(final int limit) {
 		final List<IPLPlayer> sortedByFours = sortBy(batsman.getPlayerList(),
 				Comparator.comparing(IPLPlayer::getNoOfFours).reversed(), limit);
 
 		return sortedByFours.toArray(new IPLPlayer[0]);
 	}
 
-	public IPLPlayer[] getHighestSixes(int limit) {
+	public IPLPlayer[] getHighestSixes(final int limit) {
 		final List<IPLPlayer> sortedBySixes = sortBy(batsman.getPlayerList(),
 				Comparator.comparing(IPLPlayer::getNoOfSixes).reversed(), limit);
+
+		return sortedBySixes.toArray(new IPLPlayer[0]);
+	}
+
+	public IPLPlayer[] getHighestStrikeRateWithFoursAndSixes(final int limit) {
+		final Comparator<IPLPlayer> comparator = Comparator.comparing(IPLPlayer::getNoOfSixes)
+				.thenComparing(IPLPlayer::getNoOfFours).thenComparing(IPLPlayer::getStrikingRate).reversed();
+
+		final List<IPLPlayer> sortedBySixes = sortBy(batsman.getPlayerList(), comparator, limit);
 
 		return sortedBySixes.toArray(new IPLPlayer[0]);
 	}
