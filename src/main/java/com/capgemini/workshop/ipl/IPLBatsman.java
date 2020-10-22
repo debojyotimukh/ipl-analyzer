@@ -2,7 +2,7 @@ package com.capgemini.workshop.ipl;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class IPLPlayer {
+public class IPLBatsman {
     @CsvBindByName(column = "Player", required = true)
     private String playerName;
 
@@ -27,10 +27,10 @@ public class IPLPlayer {
     @CsvBindByName(column = "Runs", required = true)
     private int runScored;
 
-    public IPLPlayer() {
+    public IPLBatsman() {
     }
 
-    public IPLPlayer(String playerName, int innings, int runs, String average, double strikingRate, int noOfFours,
+    public IPLBatsman(String playerName, int innings, int runs, String average, double strikingRate, int noOfFours,
             int noOfSixes, int runScored) {
         this.playerName = playerName;
         this.innings = innings;
