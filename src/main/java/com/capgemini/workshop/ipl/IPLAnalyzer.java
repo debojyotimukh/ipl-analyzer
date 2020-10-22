@@ -89,6 +89,12 @@ public class IPLAnalyzer {
 		}
 	}
 
+	public IPLBowler[] getTopBowlingAvg(int limit) {
+		final List<IPLBowler> sortedList = sortBy(bowlerRepo.getPlayerList(),
+				Comparator.comparing(IPLBowler::getAverage).reversed(), limit);
+		return sortedList.toArray(new IPLBowler[0]);
+	}
+
 	public IPLBowler[] getTopBowlingStrikingRate(int limit) {
 		final List<IPLBowler> sortedList = sortBy(bowlerRepo.getPlayerList(),
 				Comparator.comparing(IPLBowler::getStrikingRate).reversed(), limit);
