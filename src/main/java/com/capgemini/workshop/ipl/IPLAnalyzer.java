@@ -2,6 +2,7 @@ package com.capgemini.workshop.ipl;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class IPLAnalyzer {
@@ -91,19 +92,26 @@ public class IPLAnalyzer {
 
 	public IPLBowler[] getTopBowlingAvg(int limit) {
 		final List<IPLBowler> sortedList = sortBy(bowlerRepo.getPlayerList(),
-				Comparator.comparing(IPLBowler::getAverage).reversed(), limit);
+				Comparator.comparing(IPLBowler::getAverage), limit);
 		return sortedList.toArray(new IPLBowler[0]);
 	}
 
 	public IPLBowler[] getTopBowlingStrikingRate(int limit) {
 		final List<IPLBowler> sortedList = sortBy(bowlerRepo.getPlayerList(),
-				Comparator.comparing(IPLBowler::getStrikingRate).reversed(), limit);
+				Comparator.comparing(IPLBowler::getStrikingRate), limit);
 		return sortedList.toArray(new IPLBowler[0]);
 	}
 
 	public IPLBowler[] getTopEconomyRate(int limit) {
 		final List<IPLBowler> sortedList = sortBy(bowlerRepo.getPlayerList(),
-				Comparator.comparing(IPLBowler::getEconomyRate).reversed(), limit);
+				Comparator.comparing(IPLBowler::getEconomyRate), limit);
+		return sortedList.toArray(new IPLBowler[0]);
+	}
+
+	public IPLBowler[] getBestStrikeRateWith4wOr5w(int limit) {
+		List<IPLBowler> filteredList = bowlerRepo.getPlayerList().stream()
+				.filter(p -> p.getNoOf4wTaken() != 0 || p.getNoOf5wTaken() != 0).collect(Collectors.toList());
+		List<IPLBowler> sortedList = sortBy(filteredList, Comparator.comparing(IPLBowler::getStrikingRate), limit);
 		return sortedList.toArray(new IPLBowler[0]);
 	}
 
