@@ -71,4 +71,10 @@ public class IPLAnalyzerTest {
         Assert.assertEquals(iplBowlers[0].getName(), "Krishnappa Gowtham");
     }
 
+    @Test
+    public void bowlerWithTopEconomyRate() {
+        IPLBowler[] iplBowlers = iplAnalyzer.getTopEconomyRate(5);
+        Assert.assertEquals(iplBowlers[0].getName(), "Ben Cutting");
+    }
+
 }
