@@ -69,7 +69,7 @@ public class IPLBatsman {
     public Double getAverage() {
         if (!average.equals("-"))
             return Double.parseDouble(average);
-        return 0.0;
+        return Double.NEGATIVE_INFINITY;
     }
 
     public void setAverage(String average) {

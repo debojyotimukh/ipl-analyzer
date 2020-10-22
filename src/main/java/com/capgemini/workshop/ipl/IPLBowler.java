@@ -73,7 +73,7 @@ public class IPLBowler {
 	public Double getAverage() {
 		if (!average.equals("-"))
 			return Double.parseDouble(average);
-		return 0.0;
+		return Double.POSITIVE_INFINITY;
 	}
 
 	public void setAverage(String average) {
@@ -99,7 +99,7 @@ public class IPLBowler {
 	public Double getStrikingRate() {
 		if (!strikingRate.equals("-"))
 			return Double.parseDouble(strikingRate);
-		return 0.0;
+		return Double.POSITIVE_INFINITY;
 	}
 
 	public void setStrikingRate(String strikingRate) {
@@ -114,7 +114,7 @@ public class IPLBowler {
 		this.noOf4wTaken = noOf4wTaken;
 	}
 
-	public int getNoOf6wTaken() {
+	public int getNoOf5wTaken() {
 		return noOf5wTaken;
 	}
 
