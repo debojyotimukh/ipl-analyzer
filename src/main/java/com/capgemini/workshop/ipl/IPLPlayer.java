@@ -24,11 +24,14 @@ public class IPLPlayer {
     @CsvBindByName(column = "6s", required = true)
     private int noOfSixes;
 
+    @CsvBindByName(column = "Runs", required = true)
+    private int runScored;
+
     public IPLPlayer() {
     }
 
     public IPLPlayer(String playerName, int innings, int runs, String average, double strikingRate, int noOfFours,
-            int noOfSixes) {
+            int noOfSixes, int runScored) {
         this.playerName = playerName;
         this.innings = innings;
         this.runs = runs;
@@ -36,6 +39,7 @@ public class IPLPlayer {
         this.strikingRate = strikingRate;
         this.noOfFours = noOfFours;
         this.noOfSixes = noOfSixes;
+        this.runScored = runScored;
     }
 
     public String getName() {
@@ -94,6 +98,14 @@ public class IPLPlayer {
 
     public void setNoOfSixes(int noOfSixes) {
         this.noOfSixes = noOfSixes;
+    }
+
+    public int getRunScored() {
+        return runScored;
+    }
+
+    public void setRunScored(int runScored) {
+        this.runScored = runScored;
     }
 
 }
