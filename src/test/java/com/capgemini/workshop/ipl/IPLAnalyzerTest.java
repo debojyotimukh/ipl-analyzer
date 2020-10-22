@@ -62,19 +62,25 @@ public class IPLAnalyzerTest {
     @Test
     public void bowlerWithTopBowlingAvg() {
         IPLBowler[] iplBowlers = iplAnalyzer.getTopBowlingAvg(5);
-        Assert.assertEquals(iplBowlers[0].getName(), "Krishnappa Gowtham");        
+        Assert.assertEquals(iplBowlers[0].getName(), "Anukul Roy");
     }
 
     @Test
     public void bowlerWithTopStrikingRates() {
         IPLBowler[] iplBowlers = iplAnalyzer.getTopBowlingStrikingRate(5);
-        Assert.assertEquals(iplBowlers[0].getName(), "Krishnappa Gowtham");
+        Assert.assertEquals(iplBowlers[0].getName(), "Alzarri Joseph");
     }
 
     @Test
     public void bowlerWithTopEconomyRate() {
         IPLBowler[] iplBowlers = iplAnalyzer.getTopEconomyRate(5);
-        Assert.assertEquals(iplBowlers[0].getName(), "Ben Cutting");
+        Assert.assertEquals(iplBowlers[0].getName(), "Shivam Dube");
+    }
+
+    @Test
+    public void bowlerWithBestStrikeRateWith4wOr5w() {
+        IPLBowler[] iplBowlers = iplAnalyzer.getBestStrikeRateWith4wOr5w(5);
+        Assert.assertEquals(iplBowlers[0].getName(), "Alzarri Joseph");
     }
 
 }
