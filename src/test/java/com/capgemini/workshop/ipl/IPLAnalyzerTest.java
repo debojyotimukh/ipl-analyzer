@@ -45,4 +45,10 @@ public class IPLAnalyzerTest {
         Assert.assertEquals(iplPlayers[0].getName(), "Andre Russell");
     }
 
+    @Test
+    public void batsmanWithBestAverageWithBestStrikingRate(){
+        IPLPlayer[] iplPlayers = iplAnalyzer.getBestAverageWithBestStrikeRate(5);
+        Assert.assertEquals(iplPlayers[0].getName(), "MS Dhoni");
+    }
+
 }
