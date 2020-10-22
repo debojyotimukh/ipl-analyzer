@@ -42,7 +42,7 @@ public class IPLAnalyzerTest {
     @Test
     public void batsmanWithHighestStrikeRateWithFoursAndSixes(){
         IPLPlayer[] iplPlayers = iplAnalyzer.getHighestStrikeRateWithFoursAndSixes(5);
-        Assert.assertEquals(iplPlayers[0].getName(), "Ishant Sharma");
+        Assert.assertEquals(iplPlayers[0].getName(), "Andre Russell");
     }
 
 }
