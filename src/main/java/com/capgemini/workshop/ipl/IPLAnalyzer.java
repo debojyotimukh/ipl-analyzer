@@ -70,4 +70,13 @@ public class IPLAnalyzer {
 		return sortedBySixes.toArray(new IPLPlayer[0]);
 	}
 
+	public IPLPlayer[] getMaximumRunWithBestAvg(int limit) {
+		final Comparator<IPLPlayer> comparator = Comparator.comparing(IPLPlayer::getRunScored)
+				.thenComparing(IPLPlayer::getAverage).reversed();
+
+		final List<IPLPlayer> sortedBySixes = sortBy(batsman.getPlayerList(), comparator, limit);
+
+		return sortedBySixes.toArray(new IPLPlayer[0]);
+	}
+
 }
