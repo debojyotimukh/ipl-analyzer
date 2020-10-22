@@ -101,4 +101,10 @@ public class IPLAnalyzer {
 		return sortedList.toArray(new IPLBowler[0]);
 	}
 
+	public IPLBowler[] getTopEconomyRate(int limit) {
+		final List<IPLBowler> sortedList = sortBy(bowlerRepo.getPlayerList(),
+				Comparator.comparing(IPLBowler::getEconomyRate).reversed(), limit);
+		return sortedList.toArray(new IPLBowler[0]);
+	}
+
 }
