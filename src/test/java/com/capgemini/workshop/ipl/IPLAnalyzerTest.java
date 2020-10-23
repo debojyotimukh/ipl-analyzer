@@ -81,7 +81,7 @@ public class IPLAnalyzerTest {
     @Test
     public void bowlerWithBestStrikeRateWith4wAnd5w() {
         IPLBowler[] iplBowlers = iplAnalyzer.getBestStrikeRateWith4wOr5w(5);
-        Assert.assertEquals(0,iplBowlers.length);
+        Assert.assertEquals(0, iplBowlers.length);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class IPLAnalyzerTest {
     @Test
     public void bowlerWithMaximumWktsAndWithBestAvg() {
         IPLBowler[] iplBowlers = iplAnalyzer.getMaxWktsAndBestAvg(5);
-        Assert.assertEquals(iplBowlers[0].getName(), "Imran Tahir");        
+        Assert.assertEquals(iplBowlers[0].getName(), "Imran Tahir");
     }
 
 }
