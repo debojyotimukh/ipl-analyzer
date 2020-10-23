@@ -122,4 +122,11 @@ public class IPLAnalyzer {
 		return bowlerList.toArray(new IPLBowler[0]);
 	}
 
+	public IPLBowler[] getMaxWktsAndBestAvg(int limit) {
+		final Comparator<IPLBowler> comparator = Comparator.comparing(IPLBowler::getWicketsScored).reversed()
+				.thenComparing(IPLBowler::getAverage);
+		final List<IPLBowler> bowlerList = sortBy(bowlerRepo.getPlayerList(), comparator, limit);
+		return bowlerList.toArray(new IPLBowler[0]);
+	}
+
 }
