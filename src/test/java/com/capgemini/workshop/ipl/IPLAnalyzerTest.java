@@ -5,8 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class IPLAnalyzerTest {
-    private static final String IPL_BATTING_DATA = "src/test/java/com/capgemini/workshop/ipl/resources/IPL2019FactsheetMostRuns.csv";
-    private static final String IPL_BOWLING_DATA = "src/test/java/com/capgemini/workshop/ipl/resources/IPL2019FactsheetMostWkts.csv";
+    private static final String TEST_RESOURCES = "src/test/java/com/capgemini/workshop/ipl/resources/";
+    private static final String IPL_BATTING_DATA = TEST_RESOURCES + "IPL2019FactsheetMostRuns.csv";
+    private static final String IPL_BOWLING_DATA = TEST_RESOURCES + "IPL2019FactsheetMostWkts.csv";
 
     public IPLAnalyzer iplAnalyzer;
 
@@ -78,8 +79,14 @@ public class IPLAnalyzerTest {
     }
 
     @Test
-    public void bowlerWithBestStrikeRateWith4wOr5w() {
+    public void bowlerWithBestStrikeRateWith4wAnd5w() {
         IPLBowler[] iplBowlers = iplAnalyzer.getBestStrikeRateWith4wOr5w(5);
+        Assert.assertEquals(0,iplBowlers.length);
+    }
+
+    @Test
+    public void bowlerWithBestStrikeRateAndGreatAvg() {
+        IPLBowler[] iplBowlers = iplAnalyzer.getBestStrikeRateWithGreatAvg(5);
         Assert.assertEquals(iplBowlers[0].getName(), "Alzarri Joseph");
     }
 
