@@ -90,4 +90,10 @@ public class IPLAnalyzerTest {
         Assert.assertEquals(iplBowlers[0].getName(), "Alzarri Joseph");
     }
 
+    @Test
+    public void bowlerWithMaximumWktsAndWithBestAvg() {
+        IPLBowler[] iplBowlers = iplAnalyzer.getMaxWktsAndBestAvg(5);
+        Assert.assertEquals(iplBowlers[0].getName(), "Imran Tahir");        
+    }
+
 }
