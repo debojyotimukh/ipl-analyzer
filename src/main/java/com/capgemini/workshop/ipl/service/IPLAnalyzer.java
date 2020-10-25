@@ -154,7 +154,7 @@ public class IPLAnalyzer {
 
 	public IPLPlayer[] getBestAllRounders() {
 		List<IPLBatsman> sortedByRunBatsmans = sortBy(batsmanRepo.getPlayerList(),
-				Comparator.comparing(IPLBatsman::getRuns).reversed(), 20);
+				Comparator.comparing(IPLBatsman::getRunScored).reversed(), 20);
 
 		List<IPLBowler> sortedByWktsBowlers = sortBy(bowlerRepo.getPlayerList(),
 				Comparator.comparing(IPLBowler::getWicketsScored).reversed(), 20);
@@ -162,6 +162,14 @@ public class IPLAnalyzer {
 		List<IPLPlayer> allRounders = getAllRounders(sortedByRunBatsmans, sortedByWktsBowlers);
 
 		return allRounders.toArray(new IPLPlayer[0]);
+	}
+
+	public IPLBatsman[] getMaxHundredsBestAvg() {
+		Comparator<IPLBatsman> comparator = Comparator.comparing(IPLBatsman::getHundredsScored)
+				.thenComparing(IPLBatsman::getAverage).reversed();
+
+		List<IPLBatsman> sortedBatsmanList = sortBy(batsmanRepo.getPlayerList(), comparator, 5);
+		return sortedBatsmanList.toArray(new IPLBatsman[0]);
 	}
 
 };
