@@ -172,4 +172,12 @@ public class IPLAnalyzer {
 		return sortedBatsmanList.toArray(new IPLBatsman[0]);
 	}
 
+	public IPLBatsman[] getBestAvgWithZeroFiftiesAndHundreds() {
+		List<IPLBatsman> filteredList = batsmanRepo.getPlayerList().stream()
+				.filter(p -> (p.getFiftiesScored() == 0 && p.getHundredsScored() == 0)).collect(Collectors.toList());
+
+		List<IPLBatsman> sortedList = sortBy(filteredList, Comparator.comparing(IPLBatsman::getAverage).reversed(), 5);
+		return sortedList.toArray(new IPLBatsman[0]);
+	}
+
 };
