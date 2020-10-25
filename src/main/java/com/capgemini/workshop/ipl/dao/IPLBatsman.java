@@ -10,7 +10,7 @@ public class IPLBatsman extends IPLPlayer {
     private int innings;
 
     @CsvBindByName(column = "Runs", required = true)
-    private int runs;
+    private int runScored;
 
     @CsvBindByName(column = "Avg", required = true)
     private String average;
@@ -24,22 +24,13 @@ public class IPLBatsman extends IPLPlayer {
     @CsvBindByName(column = "6s", required = true)
     private int noOfSixes;
 
-    @CsvBindByName(column = "Runs", required = true)
-    private int runScored;
+    @CsvBindByName(column = "100", required = true)
+    private int hundredsScored;
+
+    @CsvBindByName(column = "50", required = true)
+    private int fiftiesScored;
 
     public IPLBatsman() {
-    }
-
-    public IPLBatsman(String playerName, int innings, int runs, String average, double strikingRate, int noOfFours,
-            int noOfSixes, int runScored) {
-        this.playerName = playerName;
-        this.innings = innings;
-        this.runs = runs;
-        this.average = average;
-        this.strikingRate = strikingRate;
-        this.noOfFours = noOfFours;
-        this.noOfSixes = noOfSixes;
-        this.runScored = runScored;
     }
 
     @Override
@@ -57,14 +48,6 @@ public class IPLBatsman extends IPLPlayer {
 
     public void setInnings(int innings) {
         this.innings = innings;
-    }
-
-    public int getRuns() {
-        return runs;
-    }
-
-    public void setRuns(int runs) {
-        this.runs = runs;
     }
 
     @Override
@@ -108,6 +91,22 @@ public class IPLBatsman extends IPLPlayer {
 
     public void setRunScored(int runScored) {
         this.runScored = runScored;
+    }
+
+    public int getHundredsScored() {
+        return hundredsScored;
+    }
+
+    public void setHundredsScored(int hundredsScored) {
+        this.hundredsScored = hundredsScored;
+    }
+
+    public int getFiftiesScored() {
+        return fiftiesScored;
+    }
+
+    public void setFiftiesScored(int fiftiesScored) {
+        this.fiftiesScored = fiftiesScored;
     }
 
 }
