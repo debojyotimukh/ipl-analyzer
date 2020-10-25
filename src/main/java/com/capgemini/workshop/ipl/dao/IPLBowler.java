@@ -33,19 +33,6 @@ public class IPLBowler extends IPLPlayer {
 	public IPLBowler() {
 	}
 
-	public IPLBowler(String name, int innings, int runs, String average, int wicketsScored, double economyRate,
-			String strikingRate, int noOf4wTaken, int noOf6wTaken) {
-		this.name = name;
-		this.innings = innings;
-		this.runs = runs;
-		this.average = average;
-		this.wicketsScored = wicketsScored;
-		this.economyRate = economyRate;
-		this.strikingRate = strikingRate;
-		this.noOf4wTaken = noOf4wTaken;
-		this.noOf5wTaken = noOf6wTaken;
-	}
-
 	@Override
 	public String getName() {
 		return name;
