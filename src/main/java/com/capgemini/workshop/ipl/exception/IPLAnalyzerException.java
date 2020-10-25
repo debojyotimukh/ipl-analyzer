@@ -1,4 +1,4 @@
-package com.capgemini.workshop.ipl;
+package com.capgemini.workshop.ipl.exception;
 
 public class IPLAnalyzerException extends Exception{
 

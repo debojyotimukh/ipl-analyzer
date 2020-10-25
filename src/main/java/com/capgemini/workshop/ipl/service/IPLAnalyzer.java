@@ -1,8 +1,14 @@
-package com.capgemini.workshop.ipl;
+package com.capgemini.workshop.ipl.service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.capgemini.workshop.ipl.dao.*;
+import com.capgemini.workshop.ipl.exception.*;
 
 public class IPLAnalyzer {
 	private PlayerRepository<IPLBatsman> batsmanRepo;
@@ -129,4 +135,16 @@ public class IPLAnalyzer {
 		return bowlerList.toArray(new IPLBowler[0]);
 	}
 
-}
+	public IPLPlayer[] getBestBattingBowlingAvg(int limit) {
+		Set<IPLPlayer> iplBatsman = new HashSet<>(batsmanRepo.getPlayerList());
+		Set<IPLPlayer> iplBowlers = new HashSet<>(bowlerRepo.getPlayerList());
+		iplBatsman.retainAll(iplBowlers);
+		List<IPLPlayer> allRounders = new ArrayList<>(iplBatsman);
+
+		Comparator<IPLPlayer> comparator = Comparator.comparing(IPLPlayer::getAverage).reversed()
+				.thenComparing(IPLPlayer::getAverage);
+		List<IPLPlayer> sortedAllRounders = sortBy(allRounders, comparator, limit);
+		return sortedAllRounders.toArray(new IPLPlayer[0]);
+	}
+
+};

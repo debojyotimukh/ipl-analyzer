@@ -1,8 +1,8 @@
-package com.capgemini.workshop.ipl;
+package com.capgemini.workshop.ipl.dao;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class IPLBowler {
+public class IPLBowler extends IPLPlayer {
 	@CsvBindByName(column = "Player", required = true)
 	private String name;
 
@@ -46,6 +46,7 @@ public class IPLBowler {
 		this.noOf5wTaken = noOf6wTaken;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -70,6 +71,7 @@ public class IPLBowler {
 		this.runs = runs;
 	}
 
+	@Override
 	public Double getAverage() {
 		if (!average.equals("-"))
 			return Double.parseDouble(average);

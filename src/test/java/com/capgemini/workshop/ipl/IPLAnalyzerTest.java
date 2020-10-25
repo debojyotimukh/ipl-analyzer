@@ -1,5 +1,9 @@
 package com.capgemini.workshop.ipl;
 
+import com.capgemini.workshop.ipl.dao.*;
+import com.capgemini.workshop.ipl.exception.IPLAnalyzerException;
+import com.capgemini.workshop.ipl.service.IPLAnalyzer;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -94,6 +98,12 @@ public class IPLAnalyzerTest {
     public void bowlerWithMaximumWktsAndWithBestAvg() {
         IPLBowler[] iplBowlers = iplAnalyzer.getMaxWktsAndBestAvg(5);
         Assert.assertEquals(iplBowlers[0].getName(), "Imran Tahir");
+    }
+
+    @Test
+    public void givenPlayersList_shouldGetBestBattingAndBowlingAvg() {
+        IPLPlayer[] iplAllRounders=iplAnalyzer.getBestBattingBowlingAvg(5);
+        Assert.assertEquals(iplAllRounders[0].getName(), "Andre Russell");
     }
 
 }

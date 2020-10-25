@@ -1,8 +1,8 @@
-package com.capgemini.workshop.ipl;
+package com.capgemini.workshop.ipl.dao;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class IPLBatsman {
+public class IPLBatsman extends IPLPlayer {
     @CsvBindByName(column = "Player", required = true)
     private String playerName;
 
@@ -66,6 +66,7 @@ public class IPLBatsman {
         this.runs = runs;
     }
 
+    @Override
     public Double getAverage() {
         if (!average.equals("-"))
             return Double.parseDouble(average);

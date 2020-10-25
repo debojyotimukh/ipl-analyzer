@@ -1,4 +1,4 @@
-package com.capgemini.workshop.ipl;
+package com.capgemini.workshop.ipl.dao;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -9,6 +9,7 @@ import java.util.List;
 import com.capgemini.training.iohelper.CSVBuilderException;
 import com.capgemini.training.iohelper.CSVBuilderFactory;
 import com.capgemini.training.iohelper.ICSVBuilder;
+import com.capgemini.workshop.ipl.exception.IPLAnalyzerException;
 
 public class PlayerRepository<T> {
     private List<T> playerList;
