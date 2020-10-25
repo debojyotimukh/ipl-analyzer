@@ -42,6 +42,7 @@ public class IPLBatsman extends IPLPlayer {
         this.runScored = runScored;
     }
 
+    @Override
     public String getName() {
         return playerName;
     }
