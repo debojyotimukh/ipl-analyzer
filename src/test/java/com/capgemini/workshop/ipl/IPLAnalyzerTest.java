@@ -107,8 +107,15 @@ public class IPLAnalyzerTest {
     }
 
     @Test
-    public void getBestAllRounderWithMostRunsAndMostWickets(){
-        IPLPlayer[] bestAllRounders=iplAnalyzer.getBestAllRounders();
+    public void getBestAllRounderWithMostRunsAndMostWickets() {
+        IPLPlayer[] bestAllRounders = iplAnalyzer.getBestAllRounders();
         Assert.assertEquals(bestAllRounders[0].getName(), "Hardik Pandya");
+    }
+
+    @Test
+    public void getBatsmanWithMaximumHundredsWithBestAverage() {
+        IPLBatsman[] batsmans = iplAnalyzer.getMaxHundredsBestAvg();
+        Assert.assertEquals(batsmans[0].getName(), "David Warner");
+
     }
 }
