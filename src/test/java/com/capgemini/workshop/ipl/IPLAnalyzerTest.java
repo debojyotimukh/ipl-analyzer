@@ -118,4 +118,11 @@ public class IPLAnalyzerTest {
         Assert.assertEquals(batsmans[0].getName(), "David Warner");
 
     }
+
+    @Test
+    public void getBatsmanWithZeroFiftiesAndHundredsWithBestAverage() {
+        IPLBatsman[] batsmans = iplAnalyzer.getBestAvgWithZeroFiftiesAndHundreds();
+        Assert.assertEquals(batsmans[0].getName(), "Marcus Stoinis");
+
+    }
 }
