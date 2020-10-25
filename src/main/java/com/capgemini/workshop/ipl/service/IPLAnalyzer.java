@@ -136,15 +136,32 @@ public class IPLAnalyzer {
 	}
 
 	public IPLPlayer[] getBestBattingBowlingAvg(int limit) {
-		Set<IPLPlayer> iplBatsman = new HashSet<>(batsmanRepo.getPlayerList());
-		Set<IPLPlayer> iplBowlers = new HashSet<>(bowlerRepo.getPlayerList());
-		iplBatsman.retainAll(iplBowlers);
-		List<IPLPlayer> allRounders = new ArrayList<>(iplBatsman);
+		List<IPLPlayer> allRounders = getAllRounders(batsmanRepo.getPlayerList(), bowlerRepo.getPlayerList());
 
 		Comparator<IPLPlayer> comparator = Comparator.comparing(IPLPlayer::getAverage).reversed()
 				.thenComparing(IPLPlayer::getAverage);
 		List<IPLPlayer> sortedAllRounders = sortBy(allRounders, comparator, limit);
 		return sortedAllRounders.toArray(new IPLPlayer[0]);
+	}
+
+	private List<IPLPlayer> getAllRounders(List<IPLBatsman> batsmans, List<IPLBowler> bowlers) {
+		Set<IPLPlayer> iplBatsman = new HashSet<>(batsmans);
+		Set<IPLPlayer> iplBowlers = new HashSet<>(bowlers);
+		iplBatsman.retainAll(iplBowlers); // intersection
+		List<IPLPlayer> allRounders = new ArrayList<>(iplBatsman);
+		return allRounders;
+	}
+
+	public IPLPlayer[] getBestAllRounders() {
+		List<IPLBatsman> sortedByRunBatsmans = sortBy(batsmanRepo.getPlayerList(),
+				Comparator.comparing(IPLBatsman::getRuns).reversed(), 20);
+
+		List<IPLBowler> sortedByWktsBowlers = sortBy(bowlerRepo.getPlayerList(),
+				Comparator.comparing(IPLBowler::getWicketsScored).reversed(), 20);
+
+		List<IPLPlayer> allRounders = getAllRounders(sortedByRunBatsmans, sortedByWktsBowlers);
+
+		return allRounders.toArray(new IPLPlayer[0]);
 	}
 
 };
