@@ -101,8 +101,8 @@ public class IPLAnalyzerTest {
     }
 
     @Test
-    public void givenPlayersList_shouldGetBestBattingAndBowlingAvg() {
-        IPLPlayer[] iplAllRounders=iplAnalyzer.getBestBattingBowlingAvg(5);
+    public void getBestBattingAndBowlingAvgforAllRounders() {
+        IPLPlayer[] iplAllRounders = iplAnalyzer.getBestBattingBowlingAvg(5);
         Assert.assertEquals(iplAllRounders[0].getName(), "Andre Russell");
     }
 
