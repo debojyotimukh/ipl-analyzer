@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.capgemini.workshop.ipl.dao.*;
-import com.capgemini.workshop.ipl.exception.*;
+import com.capgemini.workshop.ipl.dao.IPLBatsman;
+import com.capgemini.workshop.ipl.dao.IPLBowler;
+import com.capgemini.workshop.ipl.dao.IPLPlayer;
+import com.capgemini.workshop.ipl.dao.PlayerRepository;
+import com.capgemini.workshop.ipl.exception.IPLAnalyzerException;
 
 public class IPLAnalyzer {
 	private PlayerRepository<IPLBatsman> batsmanRepo;
@@ -121,62 +124,63 @@ public class IPLAnalyzer {
 		return sortedList.toArray(new IPLBowler[0]);
 	}
 
-	public IPLBowler[] getBestStrikeRateWithGreatAvg(int limit) {
+	public IPLBowler[] getBestStrikeRateWithGreatAvg(final int limit) {
 		final Comparator<IPLBowler> comparator = Comparator.comparing(IPLBowler::getStrikingRate)
 				.thenComparing(IPLBowler::getAverage);
 		final List<IPLBowler> bowlerList = sortBy(bowlerRepo.getPlayerList(), comparator, limit);
 		return bowlerList.toArray(new IPLBowler[0]);
 	}
 
-	public IPLBowler[] getMaxWktsAndBestAvg(int limit) {
+	public IPLBowler[] getMaxWktsAndBestAvg(final int limit) {
 		final Comparator<IPLBowler> comparator = Comparator.comparing(IPLBowler::getWicketsScored).reversed()
 				.thenComparing(IPLBowler::getAverage);
 		final List<IPLBowler> bowlerList = sortBy(bowlerRepo.getPlayerList(), comparator, limit);
 		return bowlerList.toArray(new IPLBowler[0]);
 	}
 
-	public IPLPlayer[] getBestBattingBowlingAvg(int limit) {
-		List<IPLPlayer> allRounders = getAllRounders(batsmanRepo.getPlayerList(), bowlerRepo.getPlayerList());
+	public IPLPlayer[] getBestBattingBowlingAvg(final int limit) {
+		final List<IPLPlayer> allRounders = getAllRounders(batsmanRepo.getPlayerList(), bowlerRepo.getPlayerList());
 
-		Comparator<IPLPlayer> comparator = Comparator.comparing(IPLPlayer::getAverage).reversed()
+		final Comparator<IPLPlayer> comparator = Comparator.comparing(IPLPlayer::getAverage).reversed()
 				.thenComparing(IPLPlayer::getAverage);
-		List<IPLPlayer> sortedAllRounders = sortBy(allRounders, comparator, limit);
+		final List<IPLPlayer> sortedAllRounders = sortBy(allRounders, comparator, limit);
 		return sortedAllRounders.toArray(new IPLPlayer[0]);
 	}
 
-	private List<IPLPlayer> getAllRounders(List<IPLBatsman> batsmans, List<IPLBowler> bowlers) {
-		Set<IPLPlayer> iplBatsman = new HashSet<>(batsmans);
-		Set<IPLPlayer> iplBowlers = new HashSet<>(bowlers);
+	private List<IPLPlayer> getAllRounders(final List<IPLBatsman> batsmans, final List<IPLBowler> bowlers) {
+		final Set<IPLPlayer> iplBatsman = new HashSet<>(batsmans);
+		final Set<IPLPlayer> iplBowlers = new HashSet<>(bowlers);
 		iplBatsman.retainAll(iplBowlers); // intersection
-		List<IPLPlayer> allRounders = new ArrayList<>(iplBatsman);
+		final List<IPLPlayer> allRounders = new ArrayList<>(iplBatsman);
 		return allRounders;
 	}
 
 	public IPLPlayer[] getBestAllRounders() {
-		List<IPLBatsman> sortedByRunBatsmans = sortBy(batsmanRepo.getPlayerList(),
+		final List<IPLBatsman> sortedByRunBatsmans = sortBy(batsmanRepo.getPlayerList(),
 				Comparator.comparing(IPLBatsman::getRunScored).reversed(), 20);
 
-		List<IPLBowler> sortedByWktsBowlers = sortBy(bowlerRepo.getPlayerList(),
+		final List<IPLBowler> sortedByWktsBowlers = sortBy(bowlerRepo.getPlayerList(),
 				Comparator.comparing(IPLBowler::getWicketsScored).reversed(), 20);
 
-		List<IPLPlayer> allRounders = getAllRounders(sortedByRunBatsmans, sortedByWktsBowlers);
+		final List<IPLPlayer> allRounders = getAllRounders(sortedByRunBatsmans, sortedByWktsBowlers);
 
 		return allRounders.toArray(new IPLPlayer[0]);
 	}
 
 	public IPLBatsman[] getMaxHundredsBestAvg() {
-		Comparator<IPLBatsman> comparator = Comparator.comparing(IPLBatsman::getHundredsScored)
+		final Comparator<IPLBatsman> comparator = Comparator.comparing(IPLBatsman::getHundredsScored)
 				.thenComparing(IPLBatsman::getAverage).reversed();
 
-		List<IPLBatsman> sortedBatsmanList = sortBy(batsmanRepo.getPlayerList(), comparator, 5);
+		final List<IPLBatsman> sortedBatsmanList = sortBy(batsmanRepo.getPlayerList(), comparator, 5);
 		return sortedBatsmanList.toArray(new IPLBatsman[0]);
 	}
 
 	public IPLBatsman[] getBestAvgWithZeroFiftiesAndHundreds() {
-		List<IPLBatsman> filteredList = batsmanRepo.getPlayerList().stream()
+		final List<IPLBatsman> filteredList = batsmanRepo.getPlayerList().stream()
 				.filter(p -> (p.getFiftiesScored() == 0 && p.getHundredsScored() == 0)).collect(Collectors.toList());
 
-		List<IPLBatsman> sortedList = sortBy(filteredList, Comparator.comparing(IPLBatsman::getAverage).reversed(), 5);
+		final List<IPLBatsman> sortedList = sortBy(filteredList,
+				Comparator.comparing(IPLBatsman::getAverage).reversed(), 5);
 		return sortedList.toArray(new IPLBatsman[0]);
 	}
 
