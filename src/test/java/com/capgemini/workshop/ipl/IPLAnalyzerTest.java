@@ -106,4 +106,9 @@ public class IPLAnalyzerTest {
         Assert.assertEquals(iplAllRounders[0].getName(), "Andre Russell");
     }
 
+    @Test
+    public void getBestAllRounderWithMostRunsAndMostWickets(){
+        IPLPlayer[] bestAllRounders=iplAnalyzer.getBestAllRounders();
+        Assert.assertEquals(bestAllRounders[0].getName(), "Hardik Pandya");
+    }
 }
